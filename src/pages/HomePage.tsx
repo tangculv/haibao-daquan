@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { functions, categories } from '../data/functions'
 import FunctionCard from '../components/FunctionCard'
+import PointsBadge from '../components/PointsBadge'
 
 export default function HomePage() {
   const [activeCategory, setActiveCategory] = useState<string>('all')
@@ -9,7 +10,6 @@ export default function HomePage() {
     ? functions
     : functions.filter(f => f.category === activeCategory)
 
-  // First 4 functions as featured (large cards)
   const featured = filtered.slice(0, 4)
   const rest = filtered.slice(4)
 
@@ -17,7 +17,10 @@ export default function HomePage() {
     <div className="pb-24 lg:pb-8">
       {/* Hero header */}
       <header className="px-5 lg:px-12 pt-14 lg:pt-20 pb-8 fade-up">
-        <p className="text-accent text-xs font-semibold tracking-[0.2em] uppercase mb-3">AI Poster Studio</p>
+        <div className="flex items-start justify-between">
+          <p className="text-accent text-xs font-semibold tracking-[0.2em] uppercase mb-3">AI Poster Studio</p>
+          <PointsBadge />
+        </div>
         <h1 className="text-4xl lg:text-6xl font-black text-primary tracking-tight leading-[1.1]">
           海报大全
         </h1>

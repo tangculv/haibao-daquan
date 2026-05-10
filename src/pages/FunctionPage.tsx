@@ -4,15 +4,19 @@ import { getFunctionById } from '../data/functions'
 import { buildPrompt, ratioToSize } from '../lib/prompt-builder'
 import { generateImage, imageToBase64 } from '../lib/api'
 import { useHistory } from '../stores/history'
+import { useAuth } from '../stores/auth'
 import TagSelector from '../components/TagSelector'
 import RatioSelector from '../components/RatioSelector'
 import PhotoUpload from '../components/PhotoUpload'
 import LoadingOverlay from '../components/LoadingOverlay'
 
+const COST_PER_GENERATION = 10
+
 export default function FunctionPage() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
   const addHistory = useHistory(s => s.add)
+  const { user, points, consumePoints } = useAuth()
 
   const fn = getFunctionById(id || '')
   const [inputs, setInputs] = useState<Record<string, string>>({})
@@ -37,8 +41,24 @@ export default function FunctionPage() {
     .filter(i => i.required)
     .every(i => i.type === 'photo' ? photoFile : inputs[i.key]?.trim())
 
+  const needsLogin = user === null
+  const notEnoughPoints = user !== null && points < COST_PER_GENERATION
+
   const handleGenerate = async () => {
     if (!canSubmit || loading) return
+
+    // Check login
+    if (needsLogin) {
+      navigate('/auth')
+      return
+    }
+
+    // Check points
+    if (notEnoughPoints) {
+      navigate('/points')
+      return
+    }
+
     setLoading(true)
     setError('')
 
@@ -63,6 +83,9 @@ export default function FunctionPage() {
         return
       }
 
+      // Deduct points after successful generation
+      await consumePoints(COST_PER_GENERATION)
+
       const historyItem = {
         id: Date.now().toString(),
         functionId: fn.id,
@@ -81,7 +104,7 @@ export default function FunctionPage() {
   }
 
   return (
-    <div className="min-h-screen bg-bg pb-28 lg:pb-8 lg:pl-24 lg:pr-8">
+    <div className="min-h-screen bg-bg pb-28 lg:pb-8 lg:px-12">
       {loading && <LoadingOverlay estimatedSeconds={fn.estimatedSeconds} />}
 
       {/* Header */}
@@ -180,20 +203,30 @@ export default function FunctionPage() {
       </div>
 
       {/* Fixed bottom CTA */}
-      <div className="fixed bottom-0 left-0 right-0 lg:left-16 z-40">
+      <div className="fixed bottom-0 left-0 right-0 lg:left-0 z-40">
         <div className="max-w-6xl mx-auto bg-bg/80 backdrop-blur-xl border-t border-border-subtle p-4 lg:px-8"
              style={{ paddingBottom: 'calc(16px + env(safe-area-inset-bottom, 0px))' }}>
           <div className="max-w-2xl">
             <button
               onClick={handleGenerate}
-              disabled={!canSubmit || loading}
+              disabled={(!canSubmit || loading) && !needsLogin && !notEnoughPoints}
               className={`w-full py-3.5 rounded-xl text-base font-semibold transition-all duration-300 ${
-                canSubmit && !loading
-                  ? 'bg-accent text-white shadow-lg shadow-accent/25 hover:shadow-accent/40 active:scale-[0.98]'
-                  : 'bg-disabled text-secondary cursor-not-allowed'
+                needsLogin
+                  ? 'bg-accent text-white shadow-lg shadow-accent/25 active:scale-[0.98]'
+                  : notEnoughPoints
+                    ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/25 active:scale-[0.98]'
+                    : canSubmit && !loading
+                      ? 'bg-accent text-white shadow-lg shadow-accent/25 hover:shadow-accent/40 active:scale-[0.98]'
+                      : 'bg-disabled text-secondary cursor-not-allowed'
               }`}
             >
-              {loading ? '生成中…' : `开始生成 · ~${fn.estimatedSeconds}s`}
+              {loading
+                ? '生成中…'
+                : needsLogin
+                  ? '登录后使用'
+                  : notEnoughPoints
+                    ? '点数不足，去充值'
+                    : `开始生成 · ${COST_PER_GENERATION}点 · ~${fn.estimatedSeconds}s`}
             </button>
           </div>
         </div>

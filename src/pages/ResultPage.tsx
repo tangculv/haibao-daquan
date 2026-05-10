@@ -27,7 +27,7 @@ export default function ResultPage() {
   }
 
   return (
-    <div className="min-h-screen bg-bg pb-28 lg:pb-8 lg:pl-24 lg:pr-8">
+    <div className="min-h-screen bg-bg pb-28 lg:pb-8 lg:px-12">
       {/* Header */}
       <header className="sticky top-0 bg-bg/70 backdrop-blur-xl z-10 px-4 lg:px-0 py-4 flex items-center gap-4 border-b border-border-subtle">
         <button
@@ -62,7 +62,7 @@ export default function ResultPage() {
       </div>
 
       {/* Fixed bottom actions */}
-      <div className="fixed bottom-0 left-0 right-0 lg:left-16 z-40">
+      <div className="fixed bottom-0 left-0 right-0 lg:left-0 z-40">
         <div className="max-w-6xl mx-auto bg-bg/80 backdrop-blur-xl border-t border-border-subtle p-4 lg:px-8"
              style={{ paddingBottom: 'calc(16px + env(safe-area-inset-bottom, 0px))' }}>
           <div className="max-w-3xl flex gap-3">
