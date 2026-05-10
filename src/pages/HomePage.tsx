@@ -10,21 +10,28 @@ export default function HomePage() {
     : functions.filter(f => f.category === activeCategory)
 
   return (
-    <div className="pb-20 px-4">
+    <div className="pb-24 lg:pb-8 px-4 lg:pl-24 lg:pr-8">
       {/* Header */}
-      <header className="pt-12 pb-4">
-        <h1 className="text-2xl font-bold text-primary">海报大全</h1>
-        <p className="text-sm text-secondary mt-1">选一个功能，AI 帮你生成</p>
+      <header className="pt-14 lg:pt-16 pb-8 fade-up">
+        <div className="flex items-end gap-3">
+          <h1 className="text-4xl lg:text-5xl font-black text-primary tracking-tight">
+            海报大全
+          </h1>
+          <span className="text-accent text-sm font-medium mb-1.5 tracking-wider">BETA</span>
+        </div>
+        <p className="text-secondary mt-3 text-base lg:text-lg max-w-xl">
+          选一个功能，输入内容，AI 为你生成高质量视觉作品
+        </p>
       </header>
 
       {/* Category tabs */}
-      <div className="flex gap-2 mb-4 overflow-x-auto pb-1">
+      <div className="flex gap-2 mb-6 overflow-x-auto pb-1 fade-up" style={{ animationDelay: '0.1s' }}>
         <button
           onClick={() => setActiveCategory('all')}
-          className={`px-4 py-1.5 rounded-full text-sm whitespace-nowrap transition-colors ${
+          className={`px-4 py-2 rounded-xl text-sm whitespace-nowrap transition-all duration-300 font-medium ${
             activeCategory === 'all'
-              ? 'bg-accent text-white'
-              : 'bg-surface text-secondary border border-border'
+              ? 'bg-accent text-white shadow-lg shadow-accent/20'
+              : 'bg-surface text-secondary border border-border-subtle hover:border-border hover:text-primary'
           }`}
         >
           全部
@@ -33,10 +40,10 @@ export default function HomePage() {
           <button
             key={cat.id}
             onClick={() => setActiveCategory(cat.id)}
-            className={`px-4 py-1.5 rounded-full text-sm whitespace-nowrap transition-colors ${
+            className={`px-4 py-2 rounded-xl text-sm whitespace-nowrap transition-all duration-300 font-medium ${
               activeCategory === cat.id
-                ? 'bg-accent text-white'
-                : 'bg-surface text-secondary border border-border'
+                ? 'bg-accent text-white shadow-lg shadow-accent/20'
+                : 'bg-surface text-secondary border border-border-subtle hover:border-border hover:text-primary'
             }`}
           >
             {cat.name}
@@ -44,8 +51,8 @@ export default function HomePage() {
         ))}
       </div>
 
-      {/* Function list */}
-      <div className="flex flex-col gap-3">
+      {/* Function grid — 1 col mobile, 2 col tablet, 3 col desktop */}
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 stagger">
         {filtered.map(fn => (
           <FunctionCard key={fn.id} fn={fn} />
         ))}

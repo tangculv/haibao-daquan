@@ -27,7 +27,7 @@ export default function PhotoUpload({ label, placeholder, value: _value, onChang
   }
 
   return (
-    <div className="mb-4">
+    <div>
       <label className="block text-sm font-medium text-primary mb-2">{label}</label>
       <input
         ref={inputRef}
@@ -39,10 +39,10 @@ export default function PhotoUpload({ label, placeholder, value: _value, onChang
 
       {preview ? (
         <div className="relative inline-block">
-          <img src={preview} alt="preview" className="w-40 h-40 object-cover rounded-2xl" />
+          <img src={preview} alt="preview" className="w-44 h-44 object-cover rounded-2xl border border-border-subtle" />
           <button
             onClick={handleClear}
-            className="absolute -top-2 -right-2 w-6 h-6 bg-primary text-white rounded-full text-xs flex items-center justify-center"
+            className="absolute -top-2 -right-2 w-6 h-6 bg-surface border border-border-subtle text-secondary rounded-full text-xs flex items-center justify-center hover:text-primary hover:border-border transition-all duration-300"
           >
             ✕
           </button>
@@ -50,10 +50,11 @@ export default function PhotoUpload({ label, placeholder, value: _value, onChang
       ) : (
         <button
           onClick={() => inputRef.current?.click()}
-          className="w-full h-40 border-2 border-dashed border-border rounded-2xl flex flex-col items-center justify-center text-secondary hover:border-accent transition-colors"
+          className="w-full h-44 border border-dashed border-border rounded-2xl flex flex-col items-center justify-center text-secondary hover:border-accent/50 hover:text-primary transition-all duration-300 group"
         >
-          <span className="text-3xl mb-2">📸</span>
+          <span className="text-2xl mb-2 group-hover:scale-110 transition-transform duration-300">◎</span>
           <span className="text-sm">{placeholder || '点击上传照片'}</span>
+          <span className="text-[10px] text-secondary/40 mt-1">支持 JPG / PNG</span>
         </button>
       )}
     </div>

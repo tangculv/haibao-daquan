@@ -81,109 +81,122 @@ export default function FunctionPage() {
   }
 
   return (
-    <div className="min-h-screen bg-bg pb-24">
+    <div className="min-h-screen bg-bg pb-28 lg:pb-8 lg:pl-24 lg:pr-8">
       {loading && <LoadingOverlay estimatedSeconds={fn.estimatedSeconds} />}
 
       {/* Header */}
-      <header className="sticky top-0 bg-bg/80 backdrop-blur-sm z-10 px-4 py-3 flex items-center gap-3">
-        <button onClick={() => navigate(-1)} className="text-primary text-lg">←</button>
-        <h1 className="text-lg font-semibold text-primary">{fn.name}</h1>
+      <header className="sticky top-0 bg-bg/70 backdrop-blur-xl z-10 px-4 lg:px-0 py-4 flex items-center gap-4 border-b border-border-subtle">
+        <button
+          onClick={() => navigate(-1)}
+          className="w-8 h-8 rounded-lg bg-surface border border-border-subtle flex items-center justify-center text-secondary hover:text-primary hover:border-border transition-all duration-300"
+        >
+          ←
+        </button>
+        <div>
+          <h1 className="text-lg font-bold text-primary">{fn.name}</h1>
+          <p className="text-xs text-secondary">{fn.description}</p>
+        </div>
       </header>
 
-      <div className="px-4">
-        {/* Description */}
-        <p className="text-sm text-secondary mb-6">{fn.description}</p>
-
+      <div className="px-4 lg:px-0 mt-6 max-w-2xl">
         {/* Dynamic inputs */}
-        {fn.inputs.map(input => {
-          if (input.type === 'photo') {
-            return (
-              <PhotoUpload
-                key={input.key}
-                label={input.label}
-                placeholder={input.placeholder}
-                value={photoFile}
-                onChange={setPhotoFile}
-              />
-            )
-          }
+        <div className="space-y-5 fade-up">
+          {fn.inputs.map(input => {
+            if (input.type === 'photo') {
+              return (
+                <PhotoUpload
+                  key={input.key}
+                  label={input.label}
+                  placeholder={input.placeholder}
+                  value={photoFile}
+                  onChange={setPhotoFile}
+                />
+              )
+            }
 
-          if (input.type === 'select' && input.options) {
-            return (
-              <TagSelector
-                key={input.key}
-                label={input.label}
-                options={input.options}
-                value={inputs[input.key] || input.options[0]?.value || ''}
-                onChange={(v) => updateInput(input.key, v)}
-              />
-            )
-          }
+            if (input.type === 'select' && input.options) {
+              return (
+                <TagSelector
+                  key={input.key}
+                  label={input.label}
+                  options={input.options}
+                  value={inputs[input.key] || input.options[0]?.value || ''}
+                  onChange={(v) => updateInput(input.key, v)}
+                />
+              )
+            }
 
-          if (input.type === 'textarea') {
+            if (input.type === 'textarea') {
+              return (
+                <div key={input.key}>
+                  <label className="block text-sm font-medium text-primary mb-2">
+                    {input.label}
+                    {input.required && <span className="text-accent ml-1">*</span>}
+                  </label>
+                  <textarea
+                    value={inputs[input.key] || ''}
+                    onChange={(e) => updateInput(input.key, e.target.value)}
+                    placeholder={input.placeholder}
+                    rows={4}
+                    className="w-full px-4 py-3 rounded-xl border border-border-subtle bg-surface text-primary text-sm resize-none focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/20 transition-all duration-300 placeholder:text-secondary/40"
+                  />
+                </div>
+              )
+            }
+
             return (
-              <div key={input.key} className="mb-4">
+              <div key={input.key}>
                 <label className="block text-sm font-medium text-primary mb-2">
                   {input.label}
                   {input.required && <span className="text-accent ml-1">*</span>}
                 </label>
-                <textarea
+                <input
+                  type="text"
                   value={inputs[input.key] || ''}
                   onChange={(e) => updateInput(input.key, e.target.value)}
                   placeholder={input.placeholder}
-                  rows={3}
-                  className="w-full px-3 py-2.5 rounded-xl border border-border bg-surface text-primary text-sm resize-none focus:outline-none focus:border-accent transition-colors"
+                  className="w-full px-4 py-3 rounded-xl border border-border-subtle bg-surface text-primary text-sm focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/20 transition-all duration-300 placeholder:text-secondary/40"
                 />
               </div>
             )
-          }
+          })}
 
-          return (
-            <div key={input.key} className="mb-4">
-              <label className="block text-sm font-medium text-primary mb-2">
-                {input.label}
-                {input.required && <span className="text-accent ml-1">*</span>}
-              </label>
-              <input
-                type="text"
-                value={inputs[input.key] || ''}
-                onChange={(e) => updateInput(input.key, e.target.value)}
-                placeholder={input.placeholder}
-                className="w-full px-3 py-2.5 rounded-xl border border-border bg-surface text-primary text-sm focus:outline-none focus:border-accent transition-colors"
-              />
-            </div>
-          )
-        })}
-
-        {/* Ratio selector */}
-        {fn.canCustomizeRatio && fn.ratioOptions && (
-          <RatioSelector
-            options={fn.ratioOptions}
-            value={ratio}
-            onChange={setRatio}
-          />
-        )}
+          {/* Ratio selector */}
+          {fn.canCustomizeRatio && fn.ratioOptions && (
+            <RatioSelector
+              options={fn.ratioOptions}
+              value={ratio}
+              onChange={setRatio}
+            />
+          )}
+        </div>
 
         {/* Error */}
         {error && (
-          <div className="mb-4 p-3 bg-red-600/10 rounded-xl text-red-400 text-sm">{error}</div>
+          <div className="mt-5 p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 text-sm">
+            {error}
+          </div>
         )}
       </div>
 
       {/* Fixed bottom CTA */}
-      <div className="fixed bottom-0 left-0 right-0 bg-surface border-t border-border p-4"
-           style={{ paddingBottom: 'calc(16px + env(safe-area-inset-bottom, 0px))' }}>
-        <button
-          onClick={handleGenerate}
-          disabled={!canSubmit || loading}
-          className={`w-full py-3.5 rounded-full text-base font-semibold transition-colors ${
-            canSubmit && !loading
-              ? 'bg-accent text-white active:bg-accent/90'
-              : 'bg-disabled text-white cursor-not-allowed'
-          }`}
-        >
-          {loading ? '生成中…' : `开始生成（约${fn.estimatedSeconds}秒）`}
-        </button>
+      <div className="fixed bottom-0 left-0 right-0 lg:left-16 z-40">
+        <div className="max-w-6xl mx-auto bg-bg/80 backdrop-blur-xl border-t border-border-subtle p-4 lg:px-8"
+             style={{ paddingBottom: 'calc(16px + env(safe-area-inset-bottom, 0px))' }}>
+          <div className="max-w-2xl">
+            <button
+              onClick={handleGenerate}
+              disabled={!canSubmit || loading}
+              className={`w-full py-3.5 rounded-xl text-base font-semibold transition-all duration-300 ${
+                canSubmit && !loading
+                  ? 'bg-accent text-white shadow-lg shadow-accent/25 hover:shadow-accent/40 active:scale-[0.98]'
+                  : 'bg-disabled text-secondary cursor-not-allowed'
+              }`}
+            >
+              {loading ? '生成中…' : `开始生成 · ~${fn.estimatedSeconds}s`}
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   )
