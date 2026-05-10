@@ -1,6 +1,6 @@
 export const config = { maxDuration: 120 }
 
-export default async function handler(req: any, res: any) {
+export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*')
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
@@ -43,7 +43,7 @@ export default async function handler(req: any, res: any) {
     }
 
     return res.status(200).json({ success: true, imageUrl })
-  } catch (err: any) {
+  } catch (err) {
     return res.status(500).json({ success: false, error: err.message || String(err) })
   }
 }
