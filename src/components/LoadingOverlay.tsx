@@ -9,7 +9,9 @@ const tips = [
   '正在构建视觉语言…',
   '色彩与构图推敲中…',
   '细节打磨中…',
-  '即将完成…',
+  '精细渲染中，请耐心等待…',
+  '快了，高质量图片需要一点时间…',
+  '仍在生成中，不要离开…',
 ]
 
 export default function LoadingOverlay({ estimatedSeconds }: Props) {
@@ -20,8 +22,19 @@ export default function LoadingOverlay({ estimatedSeconds }: Props) {
     return () => clearInterval(timer)
   }, [])
 
-  const progress = Math.min(95, (elapsed / estimatedSeconds) * 100)
-  const tipIndex = Math.min(Math.floor(elapsed / (estimatedSeconds / tips.length)), tips.length - 1)
+  // Slow down progress bar: first 60% goes fast, last 40% very slow
+  let progress
+  if (elapsed < estimatedSeconds * 0.6) {
+    progress = (elapsed / (estimatedSeconds * 0.6)) * 60
+  } else {
+    progress = 60 + ((elapsed - estimatedSeconds * 0.6) / (estimatedSeconds * 0.8)) * 35
+  }
+  progress = Math.min(95, progress)
+
+  const tipIndex = Math.min(
+    Math.floor(elapsed / (estimatedSeconds / tips.length)),
+    tips.length - 1
+  )
 
   return (
     <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center">
@@ -44,7 +57,7 @@ export default function LoadingOverlay({ estimatedSeconds }: Props) {
           {tips[tipIndex]}
         </p>
         <p className="text-xs text-secondary/60 mb-5 tabular-nums tracking-wide">
-          {elapsed}s / ~{estimatedSeconds}s
+          已等待 {elapsed}s
         </p>
 
         {/* Progress bar */}

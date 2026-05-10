@@ -61,7 +61,7 @@ export const functions: FunctionConfig[] = [
     defaultRatio: '3:4',
     canCustomizeRatio: true,
     ratioOptions: ['1:1', '3:4', '4:3', '9:16'],
-    estimatedSeconds: 40,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'content', type: 'textarea', label: '推荐什么？', placeholder: '一本书、一个App、一部电影、一家店、一句话……\n例如：《百年孤独》', required: true },
     ],
@@ -85,7 +85,7 @@ export const functions: FunctionConfig[] = [
     requiresImage: false,
     defaultRatio: '3:4',
     canCustomizeRatio: false,
-    estimatedSeconds: 60,
+    estimatedSeconds: 120,
     inputs: [
       { key: 'title', type: 'text', label: '主题标题', placeholder: '例如：如何每天早起', required: true },
     ],
@@ -109,7 +109,7 @@ export const functions: FunctionConfig[] = [
     defaultRatio: '3:4',
     canCustomizeRatio: true,
     ratioOptions: ['3:4', '1:1', '9:16'],
-    estimatedSeconds: 40,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'content', type: 'textarea', label: '主题 / 诗句 / 短句', placeholder: '例如：人间忽晚，山河已秋', required: true },
     ],
@@ -130,7 +130,7 @@ export const functions: FunctionConfig[] = [
     defaultRatio: '3:4',
     canCustomizeRatio: true,
     ratioOptions: ['3:4', '1:1', '9:16', '16:9'],
-    estimatedSeconds: 45,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'word', type: 'text', label: '输入一个词', placeholder: '例如：自由、孤独、春天', required: true },
       { key: 'language', type: 'select', label: '语言', placeholder: '', required: false, options: [
@@ -167,7 +167,7 @@ export const functions: FunctionConfig[] = [
     requiresImage: true,
     defaultRatio: '4:3',
     canCustomizeRatio: false,
-    estimatedSeconds: 45,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'photo', type: 'photo', label: '上传你的照片', placeholder: '正面照效果最好', required: true },
     ],
@@ -186,7 +186,7 @@ export const functions: FunctionConfig[] = [
     requiresImage: true,
     defaultRatio: '1:1',
     canCustomizeRatio: false,
-    estimatedSeconds: 30,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'photo', type: 'photo', label: '上传你的照片', placeholder: '清晰正面照效果最好', required: true },
     ],
@@ -201,7 +201,7 @@ export const functions: FunctionConfig[] = [
     requiresImage: false,
     defaultRatio: '3:4',
     canCustomizeRatio: false,
-    estimatedSeconds: 45,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'content', type: 'textarea', label: '诗句 / 主题', placeholder: '例如：晴川历历汉阳树，芳草萋萋鹦鹉洲', required: true },
     ],
@@ -221,7 +221,7 @@ export const functions: FunctionConfig[] = [
     defaultRatio: '16:9',
     canCustomizeRatio: true,
     ratioOptions: ['16:9', '1:1', '4:3', '3:4', '9:16'],
-    estimatedSeconds: 45,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'product', type: 'text', label: '产品名称', placeholder: '例如：冰丝防晒衣', required: true },
       { key: 'copy', type: 'textarea', label: '广告文案', placeholder: '例如：618 限时特惠，买二送一', required: true },
@@ -250,7 +250,7 @@ export const functions: FunctionConfig[] = [
     requiresImage: false,
     defaultRatio: '3:4',
     canCustomizeRatio: false,
-    estimatedSeconds: 40,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'city', type: 'text', label: '城市', placeholder: '例如：上海', required: true },
       { key: 'date', type: 'text', label: '日期', placeholder: '例如：2026年5月10日', required: false },
@@ -283,7 +283,7 @@ export const functions: FunctionConfig[] = [
     defaultRatio: '3:4',
     canCustomizeRatio: true,
     ratioOptions: ['3:4', '9:16', '1:1'],
-    estimatedSeconds: 45,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'topic', type: 'text', label: '教程主题', placeholder: '例如：如何说话滴水不漏', required: true },
     ],
@@ -304,7 +304,7 @@ export const functions: FunctionConfig[] = [
     defaultRatio: '3:4',
     canCustomizeRatio: true,
     ratioOptions: ['1:1', '3:4', '4:3', '9:16', '16:9'],
-    estimatedSeconds: 50,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'qrCode', type: 'photo', label: '上传二维码', placeholder: '上传清晰、完整的二维码图片', required: true },
       { key: 'theme', type: 'text', label: '主题', placeholder: '例如：春日咖啡节报名入口', required: true },
@@ -367,7 +367,7 @@ export const functions: FunctionConfig[] = [
     requiresImage: false,
     defaultRatio: '2:1',
     canCustomizeRatio: false,
-    estimatedSeconds: 40,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'theme', type: 'textarea', label: '主题', placeholder: '例如：千金散尽还复来', required: true },
     ],
@@ -429,7 +429,7 @@ export const functions: FunctionConfig[] = [
     requiresImage: true,
     defaultRatio: '1:1',
     canCustomizeRatio: false,
-    estimatedSeconds: 50,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'theme', type: 'text', label: '主题 / 品牌名', placeholder: '例如：星巴克咖啡', required: true },
       { key: 'photo', type: 'photo', label: '参考建筑图', placeholder: '可上传店铺、建筑或空间照片', required: false },
@@ -487,7 +487,7 @@ export const functions: FunctionConfig[] = [
     requiresImage: false,
     defaultRatio: '2:1',
     canCustomizeRatio: false,
-    estimatedSeconds: 40,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'theme', type: 'text', label: '主题文字', placeholder: '例如：旺铺出租', required: true },
     ],
@@ -514,7 +514,7 @@ export const functions: FunctionConfig[] = [
     requiresImage: true,
     defaultRatio: '3:4',
     canCustomizeRatio: false,
-    estimatedSeconds: 50,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'photo', type: 'photo', label: '上传人像', placeholder: '正面清晰人像效果更好', required: true },
       { key: 'question', type: 'textarea', label: '想问什么', placeholder: '例如：这个人事业运如何？', required: true },
@@ -543,7 +543,7 @@ export const functions: FunctionConfig[] = [
     defaultRatio: '3:4',
     canCustomizeRatio: true,
     ratioOptions: ['1:1', '3:4', '4:3', '9:16', '16:9'],
-    estimatedSeconds: 50,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'theme', type: 'text', label: '主题文字', placeholder: '例如：系统思维', required: true },
       { key: 'copy', type: 'textarea', label: '补充文案', placeholder: '例如：复杂世界里寻找清晰路径', required: false },
@@ -695,7 +695,7 @@ export const functions: FunctionConfig[] = [
     requiresImage: false,
     defaultRatio: '1:1',
     canCustomizeRatio: false,
-    estimatedSeconds: 30,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'subject', type: 'text', label: '主题 / 对象', placeholder: '例如：太和殿', required: true },
       { key: 'extra', type: 'textarea', label: '其他要求', placeholder: '例如：强调榫卯结构', required: false },
@@ -716,7 +716,7 @@ export const functions: FunctionConfig[] = [
     defaultRatio: '3:4',
     canCustomizeRatio: true,
     ratioOptions: ['3:4', '4:3', '16:9', '9:16'],
-    estimatedSeconds: 50,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'topic', type: 'text', label: '演化主题', placeholder: '例如：智能手机演化', required: true },
       { key: 'ratio', type: 'select', label: '比例', placeholder: '', required: false, options: [
@@ -782,7 +782,7 @@ export const functions: FunctionConfig[] = [
     requiresImage: false,
     defaultRatio: '3:4',
     canCustomizeRatio: false,
-    estimatedSeconds: 45,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'text', type: 'text', label: '核心文字', placeholder: '例如：回声', required: true },
       { key: 'language', type: 'select', label: '语言', placeholder: '', required: false, options: [
@@ -820,7 +820,7 @@ export const functions: FunctionConfig[] = [
     requiresImage: false,
     defaultRatio: '3:4',
     canCustomizeRatio: false,
-    estimatedSeconds: 50,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'text', type: 'text', label: '核心文字', placeholder: '例如：勇气', required: true },
       { key: 'language', type: 'select', label: '语言', placeholder: '', required: false, options: [
@@ -858,7 +858,7 @@ export const functions: FunctionConfig[] = [
     requiresImage: false,
     defaultRatio: '2:1',
     canCustomizeRatio: false,
-    estimatedSeconds: 45,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'theme', type: 'textarea', label: '主题 / 诗句', placeholder: '例如：鸿门宴', required: true },
     ],
@@ -882,7 +882,7 @@ export const functions: FunctionConfig[] = [
     requiresImage: false,
     defaultRatio: '2:1',
     canCustomizeRatio: false,
-    estimatedSeconds: 40,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'theme', type: 'text', label: '主题植物', placeholder: '例如：冬虫夏草', required: true },
       { key: 'knowledge', type: 'textarea', label: '知识要求', placeholder: '例如：至少10个中医相关知识，知识点至少5个层级', required: false },
@@ -904,7 +904,7 @@ export const functions: FunctionConfig[] = [
     defaultRatio: '3:4',
     canCustomizeRatio: true,
     ratioOptions: ['1:1', '3:4', '4:3', '9:16'],
-    estimatedSeconds: 40,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'app', type: 'text', label: 'App 名称', placeholder: '例如：Notion', required: true },
       { key: 'reason', type: 'textarea', label: '推荐理由', placeholder: '例如：适合知识管理和团队协作', required: true },
@@ -933,7 +933,7 @@ App 名称：{{app}}
     defaultRatio: '3:4',
     canCustomizeRatio: true,
     ratioOptions: ['1:1', '3:4', '4:3', '9:16'],
-    estimatedSeconds: 40,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'target', type: 'text', label: '推荐什么', placeholder: '例如：一本书《悉达多》', required: true },
       { key: 'reason', type: 'textarea', label: '推荐理由', placeholder: '例如：短小但后劲极强，适合迷茫期反复读', required: true },
@@ -966,7 +966,7 @@ App 名称：{{app}}
     defaultRatio: '3:4',
     canCustomizeRatio: true,
     ratioOptions: ['1:1', '3:4', '4:3', '16:9'],
-    estimatedSeconds: 40,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'content', type: 'textarea', label: '文本内容', placeholder: '例如：把复杂问题拆成 3 层结构来思考', required: true },
       { key: 'ratio', type: 'select', label: '比例', placeholder: '', required: false, options: [
@@ -1000,7 +1000,7 @@ App 名称：{{app}}
     requiresImage: false,
     defaultRatio: '9:10',
     canCustomizeRatio: false,
-    estimatedSeconds: 60,
+    estimatedSeconds: 120,
     inputs: [
       { key: 'count', type: 'text', label: '建议条数', placeholder: '例如：4', required: false },
       { key: 'tone', type: 'text', label: '卡片气质', placeholder: '例如：高级、克制、清晰、有余味', required: false },
@@ -1028,7 +1028,7 @@ App 名称：{{app}}
     defaultRatio: '3:4',
     canCustomizeRatio: true,
     ratioOptions: ['3:4', '1:1', '4:3'],
-    estimatedSeconds: 30,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'photo', type: 'photo', label: '上传照片', placeholder: '清晰正脸照效果更好', required: true },
       { key: 'scene', type: 'text', label: '适用场景', placeholder: '例如：腾讯 / MCN 部门', required: false },
@@ -1059,7 +1059,7 @@ App 名称：{{app}}
     requiresImage: true,
     defaultRatio: '3:4',
     canCustomizeRatio: false,
-    estimatedSeconds: 50,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'photo', type: 'photo', label: '上传照片', placeholder: '上传一张想改造成创意写真的人像或生活照', required: true },
       { key: 'retouch', type: 'text', label: '修图风格', placeholder: '例如：清透日系', required: false },
@@ -1115,7 +1115,7 @@ App 名称：{{app}}
     defaultRatio: '3:4',
     canCustomizeRatio: true,
     ratioOptions: ['3:4', '4:3', '16:9'],
-    estimatedSeconds: 60,
+    estimatedSeconds: 120,
     inputs: [
       { key: 'photo', type: 'photo', label: '上传人像', placeholder: '正面、半侧面、自拍都可以，但头型轮廓要清楚', required: true },
       { key: 'profile', type: 'textarea', label: '补充信息', placeholder: '例如：女，28岁，互联网运营，偏知性风', required: false },
@@ -1187,7 +1187,7 @@ App 名称：{{app}}
     requiresImage: false,
     defaultRatio: '3:4',
     canCustomizeRatio: false,
-    estimatedSeconds: 50,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'theme', type: 'text', label: '拍摄主题', placeholder: '例如：雨夜下班的人', required: true },
       { key: 'elements', type: 'textarea', label: '要求元素', placeholder: '例如：地铁口、透明雨伞、路边灯箱', required: false },
@@ -1214,7 +1214,7 @@ App 名称：{{app}}
     requiresImage: false,
     defaultRatio: '3:4',
     canCustomizeRatio: false,
-    estimatedSeconds: 50,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'theme', type: 'text', label: '拍摄主题', placeholder: '例如：凌晨便利店门口的年轻人', required: true },
       { key: 'elements', type: 'textarea', label: '要求元素', placeholder: '例如：霓虹招牌、塑料袋、逆光', required: false },
@@ -1241,7 +1241,7 @@ App 名称：{{app}}
     requiresImage: false,
     defaultRatio: '3:4',
     canCustomizeRatio: false,
-    estimatedSeconds: 40,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'content', type: 'textarea', label: '诗句 / 主题', placeholder: '例如：橘子洲头 看万山红遍', required: true },
       { key: 'style', type: 'text', label: '风格补充', placeholder: '例如：摄影美学 + 黄金时刻 + 震撼人心 + 蓝天', required: false },
@@ -1267,7 +1267,7 @@ App 名称：{{app}}
     defaultRatio: '2:1',
     canCustomizeRatio: true,
     ratioOptions: ['2:1', '3:4', '4:3', '16:9'],
-    estimatedSeconds: 60,
+    estimatedSeconds: 120,
     inputs: [
       { key: 'artifact', type: 'text', label: '文物名称', placeholder: '例如：马踏飞燕', required: true },
       { key: 'ratio', type: 'select', label: '比例', placeholder: '', required: false, options: [
@@ -1304,7 +1304,7 @@ App 名称：{{app}}
     requiresImage: true,
     defaultRatio: '1:1',
     canCustomizeRatio: false,
-    estimatedSeconds: 60,
+    estimatedSeconds: 120,
     inputs: [
       { key: 'characterRef', type: 'photo', label: '角色参考图', placeholder: '上传人物、宠物或组合角色图', required: true },
       { key: 'layoutRef', type: 'photo', label: '版式参考图', placeholder: '上传 4x4 表情包版式参考', required: false },
@@ -1530,7 +1530,7 @@ App 名称：{{app}}
     requiresImage: false,
     defaultRatio: '1:1',
     canCustomizeRatio: false,
-    estimatedSeconds: 60,
+    estimatedSeconds: 120,
     inputs: [
       { key: 'restaurant', type: 'text', label: '饭店名称', placeholder: '例如：强记粉店', required: true },
       { key: 'style', type: 'text', label: '风格偏好', placeholder: '例如：鲁迅感、黑白、冷静犀利', required: false },
@@ -1557,7 +1557,7 @@ App 名称：{{app}}
     requiresImage: true,
     defaultRatio: '1:1',
     canCustomizeRatio: false,
-    estimatedSeconds: 45,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'photo', type: 'photo', label: '上传参考图', placeholder: '可以是人物、宠物或任意场景图', required: true },
       { key: 'theme', type: 'textarea', label: '主题补充', placeholder: '例如：森林野餐的小熊和小女孩', required: false },
@@ -1584,7 +1584,7 @@ whimsical children's book illustration, hand-drawn black outlines, soft pastel c
     requiresImage: true,
     defaultRatio: '3:4',
     canCustomizeRatio: false,
-    estimatedSeconds: 40,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'photo', type: 'photo', label: '上传照片', placeholder: '上传一张人物或场景照片', required: true },
       { key: 'theme', type: 'textarea', label: '主题 / 情绪 / 角色', placeholder: '例如：角色是恐龙，天空像 iPhone 随手拍', required: false },
@@ -1609,7 +1609,7 @@ whimsical children's book illustration, hand-drawn black outlines, soft pastel c
     requiresImage: false,
     defaultRatio: '3:4',
     canCustomizeRatio: false,
-    estimatedSeconds: 40,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'traits', type: 'textarea', label: '你的特质描述', placeholder: '例如：理性、嘴硬、容易内耗，但行动力强', required: true },
     ],
@@ -1632,7 +1632,7 @@ whimsical children's book illustration, hand-drawn black outlines, soft pastel c
     defaultRatio: '3:4',
     canCustomizeRatio: true,
     ratioOptions: ['1:1', '3:4', '4:3', '9:16', '16:9'],
-    estimatedSeconds: 40,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'theme', type: 'textarea', label: '主题 / 关键词', placeholder: '例如：窗边发呆的人', required: false },
       { key: 'photo', type: 'photo', label: '参考图片', placeholder: '可上传一张参考图辅助创作', required: false },
@@ -1682,7 +1682,7 @@ whimsical children's book illustration, hand-drawn black outlines, soft pastel c
     defaultRatio: '3:4',
     canCustomizeRatio: true,
     ratioOptions: ['3:4', '1:1', '9:16'],
-    estimatedSeconds: 40,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'theme', type: 'textarea', label: '主题 / 场景', placeholder: '例如：雨天咖啡馆的一角', required: true },
       { key: 'ratio', type: 'select', label: '比例', placeholder: '', required: false, options: [
@@ -1712,7 +1712,7 @@ whimsical children's book illustration, hand-drawn black outlines, soft pastel c
     requiresImage: true,
     defaultRatio: '3:4',
     canCustomizeRatio: false,
-    estimatedSeconds: 60,
+    estimatedSeconds: 120,
     inputs: [
       { key: 'photo', type: 'photo', label: '辅助照片', placeholder: '可上传当天照片辅助分镜', required: false },
       { key: 'date', type: 'text', label: '日期', placeholder: '例如：2026-05-10', required: true },
@@ -1744,7 +1744,7 @@ whimsical children's book illustration, hand-drawn black outlines, soft pastel c
     requiresImage: false,
     defaultRatio: '3:4',
     canCustomizeRatio: false,
-    estimatedSeconds: 50,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'brand', type: 'text', label: '品牌名 / 文字', placeholder: '例如：松风', required: true },
     ],
@@ -1769,7 +1769,7 @@ whimsical children's book illustration, hand-drawn black outlines, soft pastel c
     requiresImage: true,
     defaultRatio: '2:1',
     canCustomizeRatio: false,
-    estimatedSeconds: 45,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'photo', type: 'photo', label: '上传参考图', placeholder: '上传一张双人或有关系感的参考图', required: true },
       { key: 'subject', type: 'textarea', label: '主角要求', placeholder: '例如：一方更克制，一方更可爱', required: false },
@@ -1833,7 +1833,7 @@ whimsical children's book illustration, hand-drawn black outlines, soft pastel c
     defaultRatio: '3:4',
     canCustomizeRatio: true,
     ratioOptions: ['1:1', '3:4', '4:3', '16:9', '9:16'],
-    estimatedSeconds: 50,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'productName', type: 'text', label: '产品名称', placeholder: '例如：便携榨汁杯', required: true },
       { key: 'productImage', type: 'photo', label: '产品图片', placeholder: '可上传低质产品图或拍摄照', required: false },
@@ -1892,7 +1892,7 @@ whimsical children's book illustration, hand-drawn black outlines, soft pastel c
     requiresImage: true,
     defaultRatio: '16:10',
     canCustomizeRatio: false,
-    estimatedSeconds: 50,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'diagram', type: 'photo', label: '流程图图片', placeholder: '可上传现有流程图、架构图截图', required: false },
       { key: 'mermaid', type: 'textarea', label: 'Mermaid 源码', placeholder: `例如：graph TD
@@ -1968,7 +1968,7 @@ Hard bans:
     defaultRatio: '3:4',
     canCustomizeRatio: true,
     ratioOptions: ['3:4', '1:1', '4:3', '9:16'],
-    estimatedSeconds: 50,
+    estimatedSeconds: 90,
     inputs: [
       { key: 'photo', type: 'photo', label: '上传植物照片', placeholder: '拍清楚花、叶、茎会更容易识别', required: true },
       { key: 'extra', type: 'textarea', label: '额外要求', placeholder: '例如：重点提醒是否对猫有毒', required: false },
