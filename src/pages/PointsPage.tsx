@@ -1,5 +1,6 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useAuth } from '../stores/auth'
+import { useEffect, useState } from 'react'
 
 const packages = [
   { id: 'trial', name: '体验包', points: 50, price: 6, tag: '' },
@@ -17,12 +18,46 @@ const rules = [
 
 export default function PointsPage() {
   const navigate = useNavigate()
-  const { user, points, claimDailyBonus } = useAuth()
+  const [searchParams] = useSearchParams()
+  const { user, points, claimDailyBonus, refreshPoints } = useAuth()
+  const [buying, setBuying] = useState('')
+  const [paymentMsg, setPaymentMsg] = useState('')
+
+  // Handle payment return
+  useEffect(() => {
+    const payment = searchParams.get('payment')
+    if (payment === 'success') {
+      setPaymentMsg('支付成功！点数已到账')
+      refreshPoints()
+    } else if (payment === 'cancel') {
+      setPaymentMsg('支付已取消')
+    }
+  }, [searchParams, refreshPoints])
 
   const handleClaim = async () => {
     const ok = await claimDailyBonus()
-    if (!ok) {
-      alert('今日已领取过了')
+    if (!ok) alert('今日已领取过了')
+  }
+
+  const handleBuy = async (packageId: string) => {
+    if (!user) { navigate('/auth'); return }
+    setBuying(packageId)
+    try {
+      const resp = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ packageId, userId: user.id }),
+      })
+      const data = await resp.json()
+      if (data.url) {
+        window.location.href = data.url
+      } else {
+        alert(data.error || '创建支付失败')
+      }
+    } catch (err) {
+      alert('网络错误，请重试')
+    } finally {
+      setBuying('')
     }
   }
 
@@ -40,6 +75,17 @@ export default function PointsPage() {
       </header>
 
       <div className="px-5 mt-6 max-w-lg mx-auto">
+        {/* Payment message */}
+        {paymentMsg && (
+          <div className={`mb-4 p-4 rounded-xl text-sm ${
+            paymentMsg.includes('成功')
+              ? 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-400'
+              : 'bg-amber-500/10 border border-amber-500/20 text-amber-400'
+          }`}>
+            {paymentMsg}
+          </div>
+        )}
+
         {/* Current points */}
         <div className="bg-gradient-to-br from-accent/20 to-amber-500/10 rounded-2xl p-6 text-center mb-8 fade-up">
           <p className="text-secondary text-sm mb-1">当前点数</p>
@@ -69,8 +115,9 @@ export default function PointsPage() {
             {packages.map(pkg => (
               <button
                 key={pkg.id}
-                className="w-full bg-surface border border-border-subtle rounded-2xl p-4 flex items-center justify-between hover:border-border active:scale-[0.98] transition-all"
-                onClick={() => alert('支付功能即将上线')}
+                disabled={buying === pkg.id}
+                className="w-full bg-surface border border-border-subtle rounded-2xl p-4 flex items-center justify-between hover:border-border active:scale-[0.98] transition-all disabled:opacity-50"
+                onClick={() => handleBuy(pkg.id)}
               >
                 <div className="text-left">
                   <div className="flex items-center gap-2">
@@ -83,11 +130,13 @@ export default function PointsPage() {
                   </div>
                   <p className="text-sm text-secondary mt-0.5">{pkg.points} 点</p>
                 </div>
-                <span className="text-lg font-bold text-accent">¥{pkg.price}</span>
+                <span className="text-lg font-bold text-accent">
+                  {buying === pkg.id ? '跳转中…' : `¥${pkg.price}`}
+                </span>
               </button>
             ))}
           </div>
-          <p className="text-xs text-secondary/40 mt-3 text-center">点数不过期</p>
+          <p className="text-xs text-secondary/40 mt-3 text-center">点数不过期 · Stripe 安全支付</p>
         </div>
 
         {/* Rules */}
