@@ -8,7 +8,7 @@ import MyPage from './pages/MyPage'
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="noise max-w-6xl mx-auto min-h-screen bg-bg relative">
+      <div className="min-h-screen bg-bg relative">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/function/:id" element={<FunctionPage />} />

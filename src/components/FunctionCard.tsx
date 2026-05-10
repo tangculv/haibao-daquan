@@ -1,56 +1,71 @@
 import { useNavigate } from 'react-router-dom'
 import type { FunctionConfig } from '../types'
+import { cardVisuals } from '../data/functions'
 
-const categoryIcons: Record<string, string> = {
-  text: '✎',
-  photo: '◎',
-  pro: '⬡',
-}
-
-const categoryColors: Record<string, string> = {
-  text: 'text-emerald-400 bg-emerald-400/10',
-  photo: 'text-violet-400 bg-violet-400/10',
-  pro: 'text-amber-400 bg-amber-400/10',
-}
-
-export default function FunctionCard({ fn }: { fn: FunctionConfig }) {
+export default function FunctionCard({ fn, size = 'normal' }: { fn: FunctionConfig; size?: 'featured' | 'normal' }) {
   const navigate = useNavigate()
+  const visual = cardVisuals[fn.id] || { gradient: 'from-zinc-500/20 to-zinc-600/10', emoji: '●', accent: '#a1a1aa' }
 
-  const icon = categoryIcons[fn.category] || '●'
-  const colorClass = categoryColors[fn.category] || 'text-secondary bg-surface'
+  if (size === 'featured') {
+    return (
+      <button
+        onClick={() => navigate(`/function/${fn.id}`)}
+        className="group relative overflow-hidden rounded-3xl text-left w-full active:scale-[0.98] transition-transform duration-300"
+      >
+        {/* Background gradient */}
+        <div className={`absolute inset-0 bg-gradient-to-br ${visual.gradient} opacity-60`} />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+
+        <div className="relative p-6 lg:p-8 min-h-[220px] lg:min-h-[260px] flex flex-col justify-between">
+          {/* Emoji */}
+          <div className="text-5xl lg:text-6xl mb-auto" style={{ animation: 'float 4s ease-in-out infinite' }}>
+            {visual.emoji}
+          </div>
+
+          {/* Text */}
+          <div>
+            <h3 className="text-2xl lg:text-3xl font-bold text-white mb-1 tracking-tight">
+              {fn.name}
+            </h3>
+            <p className="text-sm text-white/60 leading-relaxed max-w-xs">
+              {fn.description}
+            </p>
+            <div className="flex items-center gap-2 mt-3">
+              <span
+                className="text-xs px-2.5 py-1 rounded-full font-medium"
+                style={{ background: `${visual.accent}20`, color: visual.accent }}
+              >
+                {fn.requiresImage ? '上传照片' : '输入文字'}
+              </span>
+              <span className="text-xs text-white/30">~{fn.estimatedSeconds}s</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Hover arrow */}
+        <div className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <span className="text-white text-sm">→</span>
+        </div>
+      </button>
+    )
+  }
 
   return (
     <button
       onClick={() => navigate(`/function/${fn.id}`)}
-      className="card-glow group bg-surface hover:bg-surface-hover border border-border-subtle rounded-2xl p-5 text-left w-full transition-all duration-300 active:scale-[0.98]"
+      className="group relative overflow-hidden rounded-2xl text-left w-full active:scale-[0.98] transition-transform duration-300"
     >
-      <div className="flex items-start gap-4">
-        <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 text-base ${colorClass}`}>
-          {icon}
+      <div className={`absolute inset-0 bg-gradient-to-br ${visual.gradient} opacity-40`} />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+
+      <div className="relative p-5 min-h-[160px] flex flex-col justify-between">
+        <div className="text-3xl mb-auto" style={{ animation: 'float 4s ease-in-out infinite' }}>
+          {visual.emoji}
         </div>
-        <div className="flex-1 min-w-0">
-          <h3 className="text-base font-semibold text-primary group-hover:text-accent transition-colors duration-300">
-            {fn.name}
-          </h3>
-          <p className="text-sm text-secondary mt-1 leading-relaxed line-clamp-2">
-            {fn.description}
-          </p>
-          <div className="flex items-center gap-3 mt-3">
-            {fn.requiresImage ? (
-              <span className="text-xs text-secondary/70 flex items-center gap-1">
-                <span className="w-1 h-1 rounded-full bg-violet-400 inline-block" />
-                上传照片
-              </span>
-            ) : (
-              <span className="text-xs text-secondary/70 flex items-center gap-1">
-                <span className="w-1 h-1 rounded-full bg-emerald-400 inline-block" />
-                输入文字
-              </span>
-            )}
-            <span className="text-xs text-secondary/50">~{fn.estimatedSeconds}s</span>
-          </div>
+        <div>
+          <h3 className="text-lg font-bold text-white mb-0.5 tracking-tight">{fn.name}</h3>
+          <p className="text-xs text-white/50 leading-relaxed line-clamp-2">{fn.description}</p>
         </div>
-        <span className="text-secondary/30 group-hover:text-accent/50 transition-colors duration-300 text-lg mt-1">→</span>
       </div>
     </button>
   )
